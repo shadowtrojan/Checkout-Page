@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Out Page Link Generator</title>
+    <style>
+        bdy {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .copy-link {
+            margin-top: 10px;
+        }
+        .generate-button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .generate-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<div class="form-group">
+    <label for="product-name">Product Name:</label>
+    <input type="text" id="product-name" placeholder="Enter Product Name">
+</div>
+
+<div class="form-group">
+    <label for="total-price">Total Price:</label>
+    <input type="text" id="total-price" placeholder="Enter Total Price">
+</div>
+
+<button class="generate-button" onclick="generateLink()">Generate Link</button>
+
+<div class="copy-link">
+    <label for="checkout-link">Generated Check Out Link:</label>
+    <input type="text" id="checkout-link" readonly>
+    <button onclick="copyLink()">Copy Link</button>
+</div>
+
+<script>
+    function generateLink() {
+        const productName = document.getElementById('product-name').value;
+        const totalPrice = document.getElementById('total-price').value;
+        
+        // Encode the product name and price to include in the URL
+        const encodedProductName = encodeURIComponent(productName);
+        const encodedTotalPrice = encodeURIComponent(totalPrice);
+        
+        // Create the link to the checkout page
+        const checkoutLink = `https://shadowtrojan.github.io/Checkout-Page?product=${encodedProductName}&price=${encodedTotalPrice}`;
+        
+        // Set the generated link to the input box
+        document.getElementById('checkout-link').value = checkoutLink;
+    }
+
+    function copyLink() {
+        const linkInput = document.getElementById('checkout-link');
+        linkInput.select();
+        document.execCommand('copy');
+        alert('Link copied to clipboard!');
+    }
+</script>
+
+</body>
+</html>
+
+
