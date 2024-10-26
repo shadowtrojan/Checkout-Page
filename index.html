@@ -3,97 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Order</title>
+    <title>Order Form with Bkash Payment</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            background-color: #f4f4f4;
             margin: 0;
-            background-color: #f4f4f9;
+            padding: 0;
         }
-
         .order-container {
-            width: 90%;
-            max-width: 400px;
+            max-width: 500px;
+            margin: 50px auto;
             padding: 20px;
-            background-color: #ffffff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
             border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
-
-        .order-container h2 {
-            font-size: 1.5rem;
+        .order-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 10px;
             color: #333;
-            text-align: center;
+            text-align: left;
         }
-
-        .order-details, .payment-instructions {
-            background-color: #f8f8f8;
+        .product-info {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+        .product-info strong {
+            font-weight: bold;
+        }
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9f9f9;
             padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .total-section span {
+            font-weight: bold;
+        }
+        input[readonly] {
+            background-color: #f0f0f0;
+            color: #555;
+            cursor: not-allowed;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input[type="text"], 
+        .form-group input[type="email"], 
+        .form-group input[type="number"] {
+            width: 96%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .payment-section {
+            background-color: green;
+            color: white;
+            padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
         }
-
-        .payment-instructions {
-            background-color: #28a745;
-            color: #fff;
-        }
-
-        .payment-instructions p {
-            margin: 8px 0;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        .order-id-input {
-            width: 100%;
-            padding: 8px;
-            margin-top: 10px;
+        .payment-section h4 {
+            text-align: center;
             margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
         }
-
-        .submit-btn {
-            width: 100%;
-            padding: 10px;
-            font-size: 1rem;
-            color: #ffffff;
-            background-color: #28a745;
+        .instruction-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+        .instruction-list li {
+            margin-bottom: 10px;
+        }
+        .instruction-list li strong {
+            color: yellow;
+        }
+        .copy-button {
+            background-color: #fff;
+            color: #e2136e;
             border: none;
+            padding: 5px 10px;
             border-radius: 5px;
             cursor: pointer;
         }
-
-        .submit-btn:hover {
+        .order-button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .order-button:hover {
             background-color: #218838;
+        }
+        .optional {
+            font-size: 12px;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <div class="order-container">
-        <h2>Your Order</h2>
-        <div class="order-details">
-            <p><strong>Product Name:</strong> Unknown Product</p>
-            <p><strong>Total:</strong> USDT 0</p>
-        </div>
-        
-        <div class="payment-instructions">
-            <h3>Bkash Payment</h3>
-            <p>1. Open Binance App</p>
-            <p>2. Access "Binance Pay".</p>
-            <p>3. Send Option.</p>
-            <p>4. Enter Pay ID: <strong>01675331300</strong></p>
-            <p>5. Enter Amount and Currency</p>
-            <p>6. Confirm Details</p>
-            <p>7. Complete the Payment</p>
-        </div>
-        
-        <input type="text" placeholder="Enter Order ID" class="order-id-input">
-        <button class="submit-btn">Submit Order</button>
+
+<div class="order-container">
+    <!-- Name -->
+    <div class="form-group">
+        <label for="full-name">Full Name</label>
+        <input type="text" id="full-name" placeholder="Enter your full name">
     </div>
+
+    <!-- Email -->
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email address">
+    </div>
+
+    <!-- Mobile Number -->
+    <div class="form-group">
+        <label for="mobile">Mobile Number</label>
+        <input type="number" id="mobile" placeholder="Enter your mobile number">
+    </div>
+
+    <!-- Telegram Username (Optional) -->
+    <div class="form-group">
+        <label for="telegram-username">Telegram Username (Optional)</label>
+        <input type="text" id="telegram-username" placeholder="Enter your Telegram username (if any)">
+    </div>
+
+    <!-- My Order -->
+    <div class="order-title">Your Order</div>
+
+    <!-- Product Information -->
+    <div class="product-info">
+        <strong id="product-name-display">Product Name:</strong>
+    </div>
+
+    <!-- Total Payment (Styled) -->
+    <div class="total-section">
+        <span>Total</span>
+        <span id="total-price-display">USDT 85</span>
+    </div>
+
+    <!-- Bkash Payment Section -->
+    <div class="payment-section">
+        <h4>Bkash Payment</h4>
+        <ul class="instruction-list">
+            <li>1. Open Binance App</li>
+            <li>2. Access <strong>"Binance Pay"</strong>.</li>
+            <li>3. Send Option.</li>
+            <li>4. Enter Pay ID: 
+                <strong>01675331300</strong> 
+                <button class="copy-button" onclick="copyToClipboard()">Copy</button>
+            </li>
+            <li>5. Enter Amount and Currency</li>
+            <li>6. Confirm Details</li>
+            <li>7. Complete the Payment</li>
+        </ul>
+
+        <!-- Transaction ID Input -->
+        <div class="form-group">
+            <label for="transaction-id">Order ID</label>
+            <input type="text" id="transaction-id" placeholder="Enter Order ID">
+        </div>
+    </div>
+
+    <!-- Submit Order Button -->
+    <button class="order-button" onclick="submitOrder()">Submit Order</button>
+</div>
+
+<script>
+    // Function to get URL parameters
+    function getURLParameters() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const productName = urlParams.get('product') || 'Unknown Product';
+        const price = urlParams.get('price') || '0';
+
+        document.getElementById('product-name-display').innerText = `Product Name: ${productName}`;
+        document.getElementById('total-price-display').innerText = `USDT ${price}`;
+    }
+
+    // Call function on page load
+    window.onload = getURLParameters;
+
+    // Function to copy the Bkash number to clipboard
+    function copyToClipboard() {
+        navigator.clipboard.writeText('01675331300');
+        alert('Number copied to clipboard!');
+    }
+
+    // Submit order function
+    function submitOrder() {
+        const fullName = document.getElementById('full-name').value;
+        const email = document.getElementById('email').value;
+        const mobile = document.getElementById('mobile').value;
+        const telegramUsername = document.getElementById('telegram-username').value;
+        const transactionID = document.getElementById('transaction-id').value;
+        const productName = document.getElementById('product-name-display').innerText;
+        const totalPrice = document.getElementById('total-price-display').innerText;
+
+        const message = `Order Details:\n\nFull Name: ${fullName}\nEmail: ${email}\nMobile: ${mobile}\nTelegram Username: ${telegramUsername || 'N/A'}\nTransaction ID: ${transactionID}\n${productName}\nTotal Price: ${totalPrice}`;
+
+        // Send data to Telegram bot
+        const token = "7260191040:AAF3zmIxNxhh19tqHPzZ9q1xH2ncDpvMr9w";
+        const chatId = "5776979420";
+        const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    // Redirect to Thank You page
+                    window.location.href = "https://ywcshop.blogspot.com/p/thankyouhtml.html";
+                } else {
+                    alert('Failed to submit order. Please try again.');
+                }
+            })
+            .catch(error => {
+                alert('Error occurred: ' + error);
+            });
+    }
+</script>
+
 </body>
 </html>
